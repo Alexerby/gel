@@ -37,11 +37,17 @@ typedef struct {
  */
 Matrix *gel_matrix_create(size_t rows, size_t cols);
 
+
 /**
- * @brief Frees a previously allocated matrix.
- * @param m Pointer to the matrix to free.
+ * @brief Sets a value in the matrix.
+ * @param m Pointer to the matrix.
+ * @param row_index Row index (0-based).
+ * @param col_index Column index (0-based).
+ * @param val Value to set.
+ * @return 0 on success, non-zero if indices are out of bounds.
  */
-void gel_matrix_free(Matrix *m);
+int gel_matrix_set(Matrix *m, size_t row_index, size_t col_index, double val);
+
 
 /**
  * @brief Retrieves a value from the matrix.
@@ -53,15 +59,12 @@ void gel_matrix_free(Matrix *m);
  */
 int gel_matrix_get(const Matrix *m, size_t row_index, size_t col_index, double *out);
 
+
 /**
- * @brief Sets a value in the matrix.
- * @param m Pointer to the matrix.
- * @param row_index Row index (0-based).
- * @param col_index Column index (0-based).
- * @param val Value to set.
- * @return 0 on success, non-zero if indices are out of bounds.
+ * @brief Frees a previously allocated matrix.
+ * @param m Pointer to the matrix to free.
  */
-int gel_matrix_set(Matrix *m, size_t row_index, size_t col_index, double val);
+void gel_matrix_free(Matrix *m);
 
 
 /* ===== Algebra functions (algebra.c) ===== */
