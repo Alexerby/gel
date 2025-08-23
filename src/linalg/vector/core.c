@@ -1,49 +1,52 @@
-#include <stdlib.h>
 #include "linalg/vector.h"
+#include <stdlib.h>
+#include <stdio.h>
 
-Vector *vector_create(int size) {
+/** @copydoc gel_vector_create */
+Vector *gel_vector_create(size_t size) {
     Vector *v = malloc(sizeof(Vector));
     if (!v) return NULL;
+
     v->size = size;
     v->data = malloc(sizeof(double) * size);
     if (!v->data) {
         free(v);
         return NULL;
     }
+
     return v;
 }
 
-void vector_free(Vector *v) {
+/** @copydoc gel_vector_free */
+void gel_vector_free(Vector *v) {
     if (v) {
         free(v->data);
+        v->data = NULL;
+        v->size = 0;
         free(v);
     }
 }
 
-/**
- * @brief Sets the value at the specified index in the vector.
- * 
- * @param v Pointer to the Vector instance.
- * @param i Index of the element to set (must be between 0 and v->size - 1).
- * @param val The value to assign at the specified index.
- */
-void vector_set(Vector *v, int i, double val) {
-    if (i >= 0 && i < v->size) {
-        v->data[i] = val;
-    }
+/** @copydoc gel_vector_get */
+int gel_vector_get(const Vector *v, size_t i, double *out) {
+    if (!v || !out || i >= v->size) return -1;
+    *out = v->data[i];
+    return 0;
 }
 
+/** @copydoc gel_vector_set */
+int gel_vector_set(Vector *v, size_t i, double val) {
+    if (!v || i >= v->size) return -1;
+    v->data[i] = val;
+    return 0;
+}
 
-/**
- * @brief Gets the value at the specified index in the vector.
- * 
- * @param v Pointer to the constant Vector instance.
- * @param i Index of the element to retrieve (must be between 0 and v->size - 1).
- * @return The value at the specified index, or 0.0 if the index is out of bounds.
- */
-double vector_get(const Vector *v, int i) {
-    if (i >= 0 && i < v->size) {
-        return v->data[i];
+/** @copydoc gel_vector_stdout */
+void gel_vector_stdout(const Vector *v) {
+    if (!v) return;
+
+    for (size_t i = 0; i < v->size; i++) {
+        printf("%8.3f ", v->data[i]);
     }
-    return 0.0; // or handle error
+    printf("\n");
 }
