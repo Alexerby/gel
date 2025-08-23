@@ -61,3 +61,7 @@ dkms.conf
 
 ## compile commands 
 compile_commands.json
+
+# Doxygen generated docs 
+docs/html
+docs/latex

@@ -17,7 +17,7 @@ LIB_PATH = $(BUILD_DIR)/$(LIB_NAME)
 SRC_FILES := $(shell find $(SRC_DIR) -name '*.c')
 OBJ_FILES := $(patsubst src/%.c,$(BUILD_DIR)/%.o,$(SRC_FILES))
 
-.PHONY: all clean install-dev tests
+.PHONY: all clean install-dev tests docs
 
 # -----------------------------
 # Default target: build library
@@ -65,6 +65,13 @@ install-dev: all
 	sudo rm -rf $(PREFIX)/include/gel
 	sudo ln -s $(PWD)/include $(PREFIX)/include/gel
 	sudo ln -sf $(PWD)/$(LIB_PATH) $(PREFIX)/lib/$(LIB_NAME)
+
+
+# -----------------------------
+# Doxygen
+# -----------------------------
+docs:
+	doxygen Doxyfile
 
 # -----------------------------
 # Clean
