@@ -46,7 +46,10 @@ TEST_BINS := $(patsubst $(TEST_DIR)/%.c,$(BUILD_DIR)/bins/%,$(TEST_SOURCES))
 # Run all tests
 tests: $(TEST_BINS)
 	@for t in $(TEST_BINS); do \
+		echo ""; \
+	    echo "========================================="; \
 	    echo "Running $$t"; \
+		echo ""; \
 	    $$t || exit 1; \
 	done
 

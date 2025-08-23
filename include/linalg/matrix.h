@@ -137,4 +137,16 @@ Matrix gel_matrix_minor(const Matrix *m, size_t row, size_t col);
  */
 void gel_matrix_stdout(const Matrix *m);
 
+
+/**
+ * @brief Create a deep copy of a matrix.
+ *
+ * Allocates a new Matrix and copies all values from the source.
+ *
+ * @param src Pointer to the source Matrix to copy.
+ * @return Pointer to the newly allocated Matrix containing the same values,
+ *         or NULL if allocation fails.
+ */
+Matrix *gel_matrix_copy(const Matrix *src);
+
 #endif // GEL_MATRIX_H

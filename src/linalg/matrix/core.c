@@ -48,15 +48,3 @@ void gel_matrix_free(Matrix *m) {
     }
 }
 
-
-/** @copydoc gel_matrix_stdout */
-void gel_matrix_stdout(const Matrix *m) {
-    if (!m) return;
-
-    for (size_t i = 0; i < m->rows; i++) {
-        for (size_t j = 0; j < m->cols; j++) {
-            printf("%8.3f ", MAT_AT(m, i, j));  // use macro
-        }
-        printf("\n");
-    }
-}
