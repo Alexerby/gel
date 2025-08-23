@@ -1,9 +1,9 @@
-#ifndef INNER_PRODUCT_H
-#define INNER_PRODUCT_H
+#ifndef GEL_INNER_PRODUCT_H
+#define GEL_INNER_PRODUCT_H
 
-#include "linalg.h"
+#include "vector.h"
 
 // Compute dot product of two vectors
 double vector_dot(const Vector *v1, const Vector *v2);
 
-#endif
+#endif // GEL_INNER_PRODUCT_H

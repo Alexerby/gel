@@ -1,5 +1,5 @@
-#ifndef VECTOR_H
-#define VECTOR_H
+#ifndef GEL_VECTOR_H
+#define GEL_VECTOR_H
 
 typedef struct {
     int size;
@@ -18,4 +18,4 @@ void vector_set(Vector *v, int i, double val);
 // Get i-th element of vector
 double vector_get(const Vector *v, int i);
 
-#endif // VECTOR_H
+#endif // GEL_VECTOR_H

@@ -1,5 +1,5 @@
-#ifndef MATRIX_H
-#define MATRIX_H
+#ifndef GEL_MATRIX_H
+#define GEL_MATRIX_H
 
 #include <stddef.h>
 
@@ -134,4 +134,4 @@ Matrix gel_matrix_minor(const Matrix *m, size_t row, size_t col);
  */
 void gel_matrix_stdout(const Matrix *m);
 
-#endif // MATRIX_H
+#endif // GEL_MATRIX_H
