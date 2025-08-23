@@ -44,7 +44,8 @@ Matrix *gel_matrix_mul(const Matrix *a, const Matrix *b) {
                 double bVal = b->data[k * b->cols + j]; // element from column j of B
                 sum += aVal * bVal;
             }
-            c->data[i * c->cols + j] = sum;             // store result in C(i,j)
+            MAT_AT(c, i, j) = sum;                      // store result in C(i,j)
+
         }
     }
 
