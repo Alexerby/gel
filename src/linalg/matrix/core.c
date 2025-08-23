@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-// Create a new matrix
+/** @copydoc gel_matrix_create */
 Matrix *gel_matrix_create(size_t rows, size_t cols) {
     Matrix *m = malloc(sizeof(Matrix));
     if (!m) return NULL;
@@ -19,7 +19,7 @@ Matrix *gel_matrix_create(size_t rows, size_t cols) {
     return m;
 }
 
-// Free a matrix's memory
+/** @copydoc gel_matrix_free */
 void gel_matrix_free(Matrix *m) {
     if (m && m->data) {
         free(m->data);
@@ -28,7 +28,7 @@ void gel_matrix_free(Matrix *m) {
     }
 }
 
-// Get a value from the matrix
+/** @copydoc gel_matrix_get */
 int gel_matrix_get(const Matrix *m, size_t row_index, size_t col_index, double *out) {
     if (!m || !out || row_index >= m->rows || col_index >= m->cols) {
         return -1; // invalid indices
@@ -37,7 +37,7 @@ int gel_matrix_get(const Matrix *m, size_t row_index, size_t col_index, double *
     return 0;
 }
 
-// Set a value in the matrix
+/** @copydoc gel_matrix_set */
 int gel_matrix_set(Matrix *m, size_t row_index, size_t col_index, double val) {
     if (!m || row_index >= m->rows || col_index >= m->cols) {
         return -1; // invalid indices
@@ -46,7 +46,7 @@ int gel_matrix_set(Matrix *m, size_t row_index, size_t col_index, double val) {
     return 0;
 }
 
-// Print the matrix to stdout
+/** @copydoc gel_matrix_stdout */
 void gel_matrix_stdout(const Matrix *m) {
     if (!m) return;
 
