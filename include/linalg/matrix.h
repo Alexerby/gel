@@ -78,10 +78,41 @@ void gel_matrix_free(Matrix *m);
 Matrix *gel_matrix_add(const Matrix *a, const Matrix *b);
 
 /**
- * @brief Multiplies two matrices.
- * @param a Left-hand side matrix.
- * @param b Right-hand side matrix.
- * @return Newly allocated matrix with the product, or NULL if dimensions mismatch.
+ * @brief Multiplies two matrices. Computes the product of matrices A and B:
+ *
+ * \f[
+ * C = A \cdot B
+ * \f]
+ *
+ * where the elements of the resulting matrix C are calculated as:
+ *
+ * \f[
+ * C_{i,j} = \sum_{k=0}^{n-1} A_{i,k} \cdot B_{k,j}
+ * \f]
+ *
+ * **Requirements:**
+ * - The number of columns in A must equal the number of rows in B.
+ * - The returned matrix is newly allocated; the caller is responsible for freeing it.
+ *
+ * @param a Pointer to the left-hand side matrix.
+ * @param b Pointer to the right-hand side matrix.
+ * @return Pointer to the newly allocated result matrix, or NULL if allocation fails
+ *         or the dimensions are incompatible.
+ *
+ * @example
+ *
+ * Matrix *a = gel_matrix_create(2,3);
+ *
+ * Matrix *b = gel_matrix_create(3,2);
+ *
+ * Matrix *c = gel_matrix_mul(a, b);
+ *
+ * gel_matrix_free(a);
+ *
+ * gel_matrix_free(b);
+ *
+ * gel_matrix_free(c);
+ *
  */
 Matrix *gel_matrix_mul(const Matrix *a, const Matrix *b);
 
