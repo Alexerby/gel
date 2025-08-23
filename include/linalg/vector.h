@@ -1,5 +1,5 @@
-#ifndef LINALG_H
-#define LINALG_H
+#ifndef VECTOR_H
+#define VECTOR_H
 
 typedef struct {
     int size;
@@ -18,4 +18,4 @@ void vector_set(Vector *v, int i, double val);
 // Get i-th element of vector
 double vector_get(const Vector *v, int i);
 
-#endif // LINALG_H
+#endif // VECTOR_H
