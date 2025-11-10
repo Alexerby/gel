@@ -151,4 +151,12 @@ void gel_matrix_stdout(const Matrix *m);
  */
 Matrix *gel_matrix_copy(const Matrix *src);
 
+
+/**
+ * @brief Create identity matrix.
+ * @param dim dimension
+ * @return The identity matrix.
+ */
+Matrix *gel_matrix_identity(size_t dim);
+
 #endif // GEL_MATRIX_H

@@ -39,6 +39,7 @@ int gel_matrix_get(const Matrix *m, size_t row_index, size_t col_index, double *
     return 0;
 }
 
+
 /** @copydoc gel_matrix_free */
 void gel_matrix_free(Matrix *m) {
     if (m && m->data) {
