@@ -69,4 +69,3 @@ Matrix *gel_matrix_transpose(const Matrix *a) {
 }
 
 
-

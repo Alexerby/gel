@@ -37,6 +37,12 @@ typedef struct {
  */
 Matrix *gel_matrix_create(size_t rows, size_t cols);
 
+/**
+ * @brief Frees a previously allocated matrix.
+ * @param m Pointer to the matrix to free.
+ */
+void gel_matrix_free(Matrix *m);
+
 
 /**
  * @brief Sets a value in the matrix.
@@ -59,15 +65,7 @@ int gel_matrix_set(Matrix *m, size_t row_index, size_t col_index, double val);
  */
 int gel_matrix_get(const Matrix *m, size_t row_index, size_t col_index, double *out);
 
-
-/**
- * @brief Frees a previously allocated matrix.
- * @param m Pointer to the matrix to free.
- */
-void gel_matrix_free(Matrix *m);
-
-
-/* ===== Algebra functions (algebra.c) ===== */
+/* ===== Matrix Operations (matrix_operations.c) ===== */
 
 /**
  * @brief Adds two matrices.
@@ -78,41 +76,10 @@ void gel_matrix_free(Matrix *m);
 Matrix *gel_matrix_add(const Matrix *a, const Matrix *b);
 
 /**
- * @brief Multiplies two matrices. Computes the product of matrices A and B:
- *
- * \f[
- * C = A \cdot B
- * \f]
- *
- * where the elements of the resulting matrix C are calculated as:
- *
- * \f[
- * C_{i,j} = \sum_{k=0}^{n-1} A_{i,k} \cdot B_{k,j}
- * \f]
- *
- * **Requirements:**
- * - The number of columns in A must equal the number of rows in B.
- * - The returned matrix is newly allocated; the caller is responsible for freeing it.
- *
- * @param a Pointer to the left-hand side matrix.
- * @param b Pointer to the right-hand side matrix.
- * @return Pointer to the newly allocated result matrix, or NULL if allocation fails
- *         or the dimensions are incompatible.
- *
- * @example
- *
- * Matrix *a = gel_matrix_create(2,3);
- *
- * Matrix *b = gel_matrix_create(3,2);
- *
- * Matrix *c = gel_matrix_mul(a, b);
- *
- * gel_matrix_free(a);
- *
- * gel_matrix_free(b);
- *
- * gel_matrix_free(c);
- *
+ * @brief Multiplies two matrices.
+ * @param a Left-hand side matrix.
+ * @param b Right-hand side matrix.
+ * @return Newly allocated matrix with the product, or NULL if dimensions mismatch.
  */
 Matrix *gel_matrix_mul(const Matrix *a, const Matrix *b);
 
@@ -122,6 +89,14 @@ Matrix *gel_matrix_mul(const Matrix *a, const Matrix *b);
  * @return Newly allocated transposed matrix.
  */
 Matrix *gel_matrix_transpose(const Matrix *a);
+
+
+/**
+ * @brief Computes the trace of a matrix.
+ * @param m Pointer to the matrix.
+ * @return Trace value.
+ */
+double gel_matrix_trace(const Matrix *m);
 
 
 /* ===== Property check functions (properties.c) ===== */
@@ -167,17 +142,5 @@ Matrix gel_matrix_minor(const Matrix *m, size_t row, size_t col);
  * @param m Pointer to the matrix.
  */
 void gel_matrix_stdout(const Matrix *m);
-
-
-/**
- * @brief Create a deep copy of a matrix.
- *
- * Allocates a new Matrix and copies all values from the source.
- *
- * @param src Pointer to the source Matrix to copy.
- * @return Pointer to the newly allocated Matrix containing the same values,
- *         or NULL if allocation fails.
- */
-Matrix *gel_matrix_copy(const Matrix *src);
 
 #endif // GEL_MATRIX_H
