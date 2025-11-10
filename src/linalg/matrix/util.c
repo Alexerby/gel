@@ -23,3 +23,13 @@ Matrix *gel_matrix_clone(const Matrix *m) {
 
 }
 
+Matrix *gel_matrix_identity(size_t dim) {
+
+    Matrix *m = gel_matrix_create(dim, dim);
+    if (!m) return NULL;
+
+    for (size_t i = 0; i < dim; i++)
+        gel_matrix_set(m, i, i, 1);
+
+    return m;
+}
