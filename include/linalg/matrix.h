@@ -143,4 +143,12 @@ Matrix gel_matrix_minor(const Matrix *m, size_t row, size_t col);
  */
 void gel_matrix_stdout(const Matrix *m);
 
+
+/**
+ * @brief Copies the matrix in memory.
+ * @param m Pointer to the copied matrix.
+ * @return The copied matrix.
+ */
+Matrix *gel_matrix_copy(const Matrix *src);
+
 #endif // GEL_MATRIX_H

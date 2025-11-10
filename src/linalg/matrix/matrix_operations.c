@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include "linalg/matrix.h"
 
@@ -69,3 +70,15 @@ Matrix *gel_matrix_transpose(const Matrix *a) {
 }
 
 
+double gel_matrix_trace(const Matrix *m) {
+    if (!m || m->rows != m->cols) {
+        fprintf(stderr, "gel_matrix_trace: matrix must be square.\n");
+        return -1.0;
+    }
+
+    double sum = 0.0;
+    for (size_t i = 0; i < m->rows; i++)
+        sum += MAT_AT(m, i, i);
+
+    return sum;
+}
